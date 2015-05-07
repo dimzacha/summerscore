@@ -1,0 +1,124 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin"
+                android:paddingTop="@dimen/activity_vertical_margin"
+                android:paddingBottom="@dimen/activity_vertical_margin"
+                tools:context=".MainActivity"
+                android:background="#ffd7cda8">
+
+    <TextView
+        android:layout_width="148dp"
+        android:layout_height="90dp"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="0"
+        android:id="@+id/swimmingNumberTextview"
+        android:textColor="#ff353535"
+        android:textSize="77sp"
+        android:layout_marginTop="140dp"
+        android:gravity="center_horizontal"
+        android:layout_below="@+id/nameTextView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginRight="5dp"/>
+
+    <TextView
+        android:layout_width="148dp"
+        android:layout_height="90dp"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="0"
+        android:id="@+id/iceNumberTextview"
+        android:textColor="#ff353535"
+        android:textSize="77sp"
+        android:textAlignment="center"
+        android:gravity="center_horizontal"
+        android:layout_alignRight="@+id/nameTextView"
+        android:layout_alignEnd="@+id/nameTextView"
+        android:layout_alignTop="@+id/swimmingNumberTextview"
+        android:layout_marginLeft="5dp"/>
+
+    <Button
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:id="@+id/smimmingAddButton"
+        android:background="@drawable/addbutton"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/swimmingNumberTextview"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="50dp"/>
+
+    <Button
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:id="@+id/iceAddButton"
+        android:background="@drawable/addbutton"
+        android:layout_above="@+id/swimmingExButton"
+        android:layout_alignRight="@+id/iceNumberTextview"
+        android:layout_alignEnd="@+id/iceNumberTextview"
+        android:layout_marginRight="47dp"/>
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="80dp"
+        android:id="@+id/swimmingImageView"
+        android:src="@drawable/swimming_icon"
+        android:layout_above="@+id/iceNumberTextview"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/swimmingNumberTextview"
+        android:layout_alignEnd="@+id/swimmingNumberTextview"
+        android:layout_marginBottom="10dp"/>
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="80dp"
+        android:id="@+id/iceImageView"
+        android:src="@drawable/icecream_icon"
+        android:layout_above="@+id/iceNumberTextview"
+        android:layout_alignRight="@+id/iceNumberTextview"
+        android:layout_alignLeft="@+id/iceNumberTextview"
+        android:layout_alignStart="@+id/iceNumberTextview"
+        android:layout_marginBottom="10dp"/>
+
+    <Button
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:id="@+id/swimmingExButton"
+        android:background="@drawable/exbutton"
+        android:layout_marginTop="25dp"
+        android:layout_below="@+id/smimmingAddButton"
+        android:layout_alignLeft="@+id/smimmingAddButton"
+        android:layout_alignStart="@+id/smimmingAddButton"
+        android:layout_marginLeft="6dp"/>
+
+    <Button
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:id="@+id/iceExButton"
+        android:background="@drawable/exbutton"
+        android:layout_alignTop="@+id/swimmingExButton"
+        android:layout_alignRight="@+id/iceAddButton"
+        android:layout_toLeftOf="@+id/iceAddButton"
+        android:layout_alignParentTop="false"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentBottom="false"
+        android:layout_marginRight="7dp"/>
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Name"
+        android:id="@+id/nameTextView"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:textSize="30sp"
+        android:gravity="center_horizontal"
+        android:editable="true"
+        android:clickable="true"/>
+
+</RelativeLayout>
