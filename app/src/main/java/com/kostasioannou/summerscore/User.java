@@ -1,11 +1,15 @@
 package com.kostasioannou.summerscore;
 
+import android.content.SharedPreferences;
+
 /**
  * Created by kostasioannou on 5/4/15.
  */
 
 
 public class User {
+
+
 
 
     /*MEMBERS*/

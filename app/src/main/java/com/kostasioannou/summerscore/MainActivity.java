@@ -3,6 +3,7 @@ package com.kostasioannou.summerscore;
 import android.app.AlertDialog;
 import android.app.FragmentManager;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.text.InputType;
@@ -20,6 +21,8 @@ public class MainActivity extends ActionBarActivity {
     //Creation of User Object
 
     User user = new User();
+
+    public static final String USER_INFORMATION = "UserInformatioFile";
 
 
 
@@ -50,6 +53,17 @@ public class MainActivity extends ActionBarActivity {
 
 
 
+        /*DATA PERSISTENCE*/
+
+        SharedPreferences pref = getApplicationContext().getSharedPreferences(USER_INFORMATION,0);
+
+        final SharedPreferences.Editor editor = pref.edit();
+
+        nameTextView.setText(pref.getString("name_key","Name"));
+        swimmingTextView.setText(String.valueOf(pref.getInt("swimm_key", 0)));
+        icecreamTextView.setText(String.valueOf(pref.getInt("ice_key", 0)));
+
+
 
 
 
@@ -62,6 +76,9 @@ public class MainActivity extends ActionBarActivity {
                 user.addSwimming();
                 int currentSwimm = user.getSwimmings();
                 swimmingTextView.setText((String.valueOf(currentSwimm)));
+
+                editor.putInt("swimm_key", currentSwimm);
+                editor.commit();
             }
         };
 
@@ -71,6 +88,9 @@ public class MainActivity extends ActionBarActivity {
                 user.addIcecream();
                 int currentIce = user.getIcecreams();
                 icecreamTextView.setText(String.valueOf(currentIce));
+
+                editor.putInt("swimm_key", currentIce);
+                editor.commit();
             }
         };
 
@@ -80,6 +100,9 @@ public class MainActivity extends ActionBarActivity {
                 user.extractSwimming();
                 int currentSwimm = user.getSwimmings();
                 swimmingTextView.setText(String.valueOf(currentSwimm));
+
+                editor.putInt("swimm_key", currentSwimm);
+                editor.commit();
             }
         };
 
@@ -89,6 +112,9 @@ public class MainActivity extends ActionBarActivity {
               user.extractIcecream();
               int currentIce = user.getIcecreams();
               icecreamTextView.setText(String.valueOf(currentIce));
+
+              editor.putInt("swimm_key", currentIce);
+              editor.commit();
           }
         };
 
@@ -115,6 +141,9 @@ public class MainActivity extends ActionBarActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         user.setName(dialogNameTextField.getText().toString());
                         nameTextView.setText(user.getName());
+
+                        editor.putString("name_key",user.getName());
+                        editor.commit();
                     }
                 });
 
