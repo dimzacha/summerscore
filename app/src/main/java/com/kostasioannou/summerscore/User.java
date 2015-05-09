@@ -1,5 +1,6 @@
 package com.kostasioannou.summerscore;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 
 /**
@@ -16,9 +17,9 @@ public class User {
 
     private String mName = "Name";
 
-    private int mSwimmings = 0;
+    private int mSwimmings ;
 
-    private int mIcecreams = 0;
+    private int mIcecreams ;
 
 
 
@@ -34,7 +35,13 @@ public class User {
     }
 
     public int getIcecreams() {
-        return mIcecreams;
+        if (mIcecreams >= 0) {
+            return mIcecreams;
+        }
+        else{
+            setIcecreams(0);
+            return 0;
+        }
     }
 
     public void setIcecreams(int icecreams) {
@@ -43,7 +50,12 @@ public class User {
 
 
     public int getSwimmings() {
-        return mSwimmings;
+        if (mSwimmings >= 0){
+            return mSwimmings;
+        }else{
+            setSwimmings(0);
+            return 0;
+        }
     }
 
     public void setSwimmings(int swimmings) {
@@ -68,4 +80,5 @@ public class User {
     public void extractIcecream(){
         mIcecreams --;
     }
+
 }

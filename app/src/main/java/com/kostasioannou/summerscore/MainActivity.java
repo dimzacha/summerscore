@@ -2,13 +2,13 @@ package com.kostasioannou.summerscore;
 
 import android.app.AlertDialog;
 import android.app.FragmentManager;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.text.InputType;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -33,7 +33,7 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
 
 
-        //Retrieve the Views
+        //************* RETRIEVE THE VIEWS ******************************************
 
         final TextView nameTextView = (TextView) findViewById(R.id.nameTextView);
 
@@ -50,6 +50,8 @@ public class MainActivity extends ActionBarActivity {
 
         Button exIceButton = (Button) findViewById(R.id.iceExButton);
 
+        Button shareButton = (Button) findViewById(R.id.shareButton);
+
 
 
 
@@ -59,9 +61,14 @@ public class MainActivity extends ActionBarActivity {
 
         final SharedPreferences.Editor editor = pref.edit();
 
+        //PASSING THE SAVED VALUES IF THEY DONT EXISTS PASSING DEFAULTS
+
         nameTextView.setText(pref.getString("name_key","Name"));
+        user.setName(pref.getString("name_key","Name"));
         swimmingTextView.setText(String.valueOf(pref.getInt("swimm_key", 0)));
+        user.setSwimmings(pref.getInt("swimm_key",0));
         icecreamTextView.setText(String.valueOf(pref.getInt("ice_key", 0)));
+        user.setIcecreams(pref.getInt("ice_key",0));
 
 
 
@@ -74,10 +81,11 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 user.addSwimming();
-                int currentSwimm = user.getSwimmings();
-                swimmingTextView.setText((String.valueOf(currentSwimm)));
+                swimmingTextView.setText((String.valueOf(user.getSwimmings())));
 
-                editor.putInt("swimm_key", currentSwimm);
+
+                //SAVING
+                editor.putInt("swimm_key", user.getSwimmings());
                 editor.commit();
             }
         };
@@ -86,10 +94,11 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 user.addIcecream();
-                int currentIce = user.getIcecreams();
-                icecreamTextView.setText(String.valueOf(currentIce));
+                icecreamTextView.setText(String.valueOf(user.getIcecreams()));
 
-                editor.putInt("swimm_key", currentIce);
+
+                //SAVING
+                editor.putInt("ice_key", user.getIcecreams());
                 editor.commit();
             }
         };
@@ -98,10 +107,11 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 user.extractSwimming();
-                int currentSwimm = user.getSwimmings();
-                swimmingTextView.setText(String.valueOf(currentSwimm));
+                swimmingTextView.setText(String.valueOf(user.getSwimmings()));
 
-                editor.putInt("swimm_key", currentSwimm);
+
+                //SAVING
+                editor.putInt("swimm_key", user.getSwimmings());
                 editor.commit();
             }
         };
@@ -110,19 +120,38 @@ public class MainActivity extends ActionBarActivity {
           @Override
             public void onClick(View v) {
               user.extractIcecream();
-              int currentIce = user.getIcecreams();
-              icecreamTextView.setText(String.valueOf(currentIce));
+              icecreamTextView.setText(String.valueOf(user.getIcecreams()));
 
-              editor.putInt("swimm_key", currentIce);
+
+              //SAVING
+              editor.putInt("ice_key", user.getIcecreams());
               editor.commit();
           }
         };
+
+
+
+
+
+        //************ SHARE BUTTON EVENT ************************************************
+
+        View.OnClickListener shareListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+            }
+        };
+
+
 
 
         addIceButton.setOnClickListener(addIceListener);
         addSwimButton.setOnClickListener(addSwimmListener);
         exIceButton.setOnClickListener(exIceListener);
         exSwimButton.setOnClickListener(exSwimmListener);
+
+        shareButton.setOnClickListener(shareListener);
 
 
 
@@ -142,6 +171,8 @@ public class MainActivity extends ActionBarActivity {
                         user.setName(dialogNameTextField.getText().toString());
                         nameTextView.setText(user.getName());
 
+
+                        //SAVING
                         editor.putString("name_key",user.getName());
                         editor.commit();
                     }
@@ -152,7 +183,7 @@ public class MainActivity extends ActionBarActivity {
 
 
 
-        //CONNECTING ALERT DIALOG ----> PRESSING EVENT
+        //REGISTERING ALERT DIALOG ----> PRESSING EVENT
         View.OnClickListener nameChange = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -168,6 +199,5 @@ public class MainActivity extends ActionBarActivity {
 
 
     }//End of onCreate Method
-
 
 }//End of MainActivity Class
